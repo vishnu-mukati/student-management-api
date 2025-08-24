@@ -61,15 +61,15 @@ const updateStudentData = (async (req, res) => {
 
 const getStudentData = (async (req, res) => {
 
-    // try {
-    //     const student = await studentModal.findAll();
-    //     if (!student) {
-    //         res.status(404).send("student not found");
-    //     }
-    //     res.status(200).json(student);
-    // } catch (err) {
-    //     res.status(500).send("error occurred while getting data");
-    // }
+    try {
+        const student = await studentModal.findAll();
+        if (!student) {
+            res.status(404).send("student not found");
+        }
+        res.status(200).json(student);
+    } catch (err) {
+        res.status(500).send("error occurred while getting data");
+    }
     // const getStudentDataQuery = `SELECT * FROM students`;
     // db.execute(getStudentDataQuery, (err, result) => {
     //     if (err) {
