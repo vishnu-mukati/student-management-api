@@ -83,16 +83,16 @@ const getStudentData = (async (req, res) => {
 
 const getStudentDataById = (async (req, res) => {
 
-    // try {
-    //     const { id } = req.params;
-    //     const student = await studentModal.findByPk(id);
-    //     if (!student) {
-    //         res.status(404).send("user not found");
-    //     }
-    //     res.status(200).json(student)
-    // } catch (err) {
-    //     res.status(500).send("error encountered while fetching");
-    // }
+    try {
+        const { id } = req.params;
+        const student = await studentModal.findByPk(id);
+        if (!student) {
+            res.status(404).send("user not found");
+        }
+        res.status(200).json(student)
+    } catch (err) {
+        res.status(500).send("error encountered while fetching");
+    }
 
     // const getStudentDataQuery = `SELECT * FROM students WHERE id = ${id}`;
     // db.execute(getStudentDataQuery, (err, result) => {
@@ -107,20 +107,20 @@ const getStudentDataById = (async (req, res) => {
 
 const deleteStudentDataById = (async (req, res) => {
 
-    // try {
-    //     const { id } = req.params;
-    //     const student = await studentModal.destroy({
-    //         where: {
-    //             id: id
-    //         }
-    //     })
-    //     if (!student) {
-    //         res.status(404).send("user is not found");
-    //     }
-    //     res.status(200).send("user is deleted");
-    // } catch (err) {
-    //     res.status(500).send("error encounter during deleting!");
-    // }
+    try {
+        const { id } = req.params;
+        const student = await studentModal.destroy({
+            where: {
+                id: id
+            }
+        })
+        if (!student) {
+            res.status(404).send("user is not found");
+        }
+        res.status(200).send("user is deleted");
+    } catch (err) {
+        res.status(500).send("error encounter during deleting!");
+    }
 
     // const deleteStudentDataByIdQuery = `DELETE FROM students WHERE id = ${id}`;
     // db.execute(deleteStudentDataByIdQuery, (err, result) => {
