@@ -1,17 +1,19 @@
 const db = require('../utils/db-connection');
-
-const addStudentData = ((req,res)=>{
+const studentModal = require('../models/student');
+const addStudentData = (async(req,res)=>{
   const {name,email,age} = req.body;
     const addStudentDataQuery = `INSERT INTO students (name,email,age) VALUES (?,?,?)`;
 
-    db.execute(addStudentDataQuery,[name,email,age],(err)=>{
-        if(err){
-            res.status(500).send(err.message);
-            db.end();
-            return;
-        }
-       res.status(200).send("data inserted successfully");
-    })
+  const response =  await studentModal.create({name,email,age})
+res.status(200).send(response);
+    // db.execute(addStudentDataQuery,[name,email,age],(err)=>{
+    //     if(err){
+    //         res.status(500).send(err.message);
+    //         db.end();
+    //         return;
+    //     }
+    //    
+    // })
 })
 
 const updateStudentData = ((req,res)=>{
