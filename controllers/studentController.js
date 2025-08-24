@@ -28,21 +28,21 @@ const addStudentData = (async (req, res) => {
 
 const updateStudentData = (async (req, res) => {
 
-    // try {
-    //     const { id } = req.params;
-    //     const { name, email } = req.body;
-    //     const student = await studentModal.findByPk(id);
-    //     if (!student) {
-    //         res.status(404).send("user not found");
-    //     }
-    //     student.name = name;
-    //     student.email = email;
-    //     await student.save();
-    //     res.status(200).send("user has been updated");
+    try {
+        const { id } = req.params;
+        const { name, email } = req.body;
+        const student = await studentModal.findByPk(id);
+        if (!student) {
+            res.status(404).send("user not found");
+        }
+        student.name = name;
+        student.email = email;
+        await student.save();
+        res.status(200).send("user has been updated");
 
-    // } catch (er) {
-    //     res.status(500).send("user cannot be updated");
-    // }
+    } catch (er) {
+        res.status(500).send("user cannot be updated");
+    }
 
 
     // const updateStudentDataQuery = `UPDATE students SET name=?,email=? WHERE id = ${id}`;
